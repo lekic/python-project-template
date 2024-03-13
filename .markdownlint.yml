@@ -1,0 +1,17 @@
+# default to true for all rules
+default: true
+
+# MD007/unordered-list-indent
+MD007:
+  indent: 2
+
+# MD041/first-line-h1
+MD041: false
+
+# MD013/line-length
+MD013: false
+
+# MD024/no-duplicate-heading
+MD024:
+  # Allow when nested under different parents e.g. CHANGELOG.md
+  siblings_only: true

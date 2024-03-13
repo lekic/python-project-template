@@ -1,0 +1,98 @@
+[build-system]
+requires = ["setuptools>=68", "setuptools_scm[toml]>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "python-project-template"
+description = "Python project template with modern standards"
+readme = "README.md"
+authors = [
+  {name = "Daniel Lekic"},
+]
+requires-python = ">=3.9"
+keywords = ["project", "template"]
+license = {text = "MIT"}
+classifiers = [
+  "Development Status :: 5 - Production",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Environment :: Console",
+  "Operating System :: MacOS",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: Unix",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Utilities",
+]
+dynamic = ["dependencies", "optional-dependencies", "version"]
+
+[project.urls]
+Homepage = "https://github.com/lekic/python-project-template"
+Documentation = "https://pages.github.com/lekic/python-project-template"
+Repository = "https://github.com/lekic/python-project-template.git"
+Issues = "https://github.com/lekic/python-project-template/issues"
+Changelog = "https://github.com/lekic/python-project-template/blob/master/CHANGELOG.md"
+
+[tool.coverage.html]
+directory = "coverage_html"
+
+[tool.coverage.run]
+source = ["src"]
+
+[tool.mypy]
+exclude = ['venv', '.venv']
+
+[tool.pytest.ini_options]
+addopts = "-ra -q --cov --import-mode=importlib"
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 88
+output-format = "concise"
+fix = true
+# src = ["src", "tests"]
+# include = ["pyproject.toml", "src/**/*.py", "scripts/**/*.py", "tests/**/*.py"]
+
+[tool.ruff.format]
+indent-style = "space"
+quote-style = "double"
+skip-magic-trailing-comma = false
+
+[tool.ruff.lint]
+select = ["B", "D", "E", "F", "I", "N", "W", "UP"]
+ignore = ["D203"]
+unfixable = ["B"]
+dummy-variable-rgx = "^_$"
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = [
+  "D104", # Missing docstring in public package
+  "F401", # Imported but unused
+  "F403", # Wildcard imports
+]
+"tests/**" = [
+  "D100", # Missing docstring in public module
+  "D103", # Missing docstring in public function
+  "S101", # Use of `assert` detected
+]
+"docs/**" = [
+  "INP001",   # Requires __init__.py but docs folder is not a package.
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
+optional-dependencies.dev = { file = ["requirements-dev.txt"] }
+
+[tool.setuptools.packages.find]
+where = ["src"]

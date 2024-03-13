@@ -1,0 +1,8 @@
+site_name: "Python Project Template"
+
+theme:
+  name: "material"
+
+plugins:
+- search
+- mkdocstrings

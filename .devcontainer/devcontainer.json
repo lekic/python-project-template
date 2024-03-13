@@ -1,0 +1,37 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+	"name": "Python 3",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": "..",
+		"args": {
+			// Update 'VARIANT' to pick a Python version: 3, 3.12, 3.11, 3.10, 3.9
+			// Append -bullseye or -buster to pin to an OS version.
+			// Use -bullseye variants on local on arm64/Apple Silicon.
+			"VARIANT": "3.10-bullseye"
+		}
+	},
+	"customizations": {
+		"codespaces": {
+			"openFiles": [
+				"CONTRIBUTING.md"
+			]
+		},
+		"vscode": {
+			"extensions": [
+				"bierner.github-markdown-preview",
+				"charliermarsh.ruff",
+				"davidanson.vscode-markdownlint",
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"njpwerner.autodocstring",
+				"redhat.vscode-yaml",
+				"tamasfe.even-better-toml"
+			]
+		}
+	},
+	"postCreateCommand": ".devcontainer/post-create.sh",
+	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode"
+}
